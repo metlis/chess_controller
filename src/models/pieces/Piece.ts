@@ -7,7 +7,7 @@ import {
   BoardEventType,
   PieceImage,
   PieceName,
-} from "types";
+} from "../../types";
 
 abstract class Piece extends Refreshable(Base) {
   public cell: Cell;
