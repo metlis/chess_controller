@@ -12,7 +12,7 @@ import type {
   Column,
   ColumnLetter,
   PiecesCoordinates,
-} from "types";
+} from "../types";
 import { PIECES_COORDINATES, COLUMN_LETTERS, AXIS_VALUES } from "../constants";
 
 class _ {}
