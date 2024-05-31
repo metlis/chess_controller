@@ -1,6 +1,6 @@
-import Cell from "models/Cell";
-import Piece from "models/pieces/Piece";
-import Base from "models/Base";
+import Cell from "./Cell";
+import Piece from "./pieces/Piece";
+import Base from "./Base";
 import King from "./pieces/King";
 
 type Promotion = {

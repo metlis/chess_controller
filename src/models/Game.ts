@@ -1,4 +1,4 @@
-import GameController from "controllers/GameController";
+import GameController from "../controllers/GameController";
 
 class Game {
   public controller: GameController;

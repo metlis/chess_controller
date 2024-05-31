@@ -1,9 +1,9 @@
-import Move from "models/Move";
-import Piece from "models/pieces/Piece";
-import King from "models/pieces/King";
-import Base from "models/Base";
-import Refreshable from "mixins/Refreshable";
-import { Color } from "types";
+import Move from "./Move";
+import Piece from "./pieces/Piece";
+import King from "./pieces/King";
+import Base from "./Base";
+import Refreshable from "../mixins/Refreshable";
+import { Color } from "../types";
 
 type snapshots = { [color in Color]: string[] };
 

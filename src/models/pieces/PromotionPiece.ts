@@ -1,6 +1,6 @@
-import type { Color, PieceImage, PieceName } from "types";
-import Base from "models/Base";
-import Cell from "models/Cell";
+import type { Color, PieceImage, PieceName } from "../../types";
+import Base from "../Base";
+import Cell from "../Cell";
 
 class PromotionPiece extends Base {
   public color: Color;

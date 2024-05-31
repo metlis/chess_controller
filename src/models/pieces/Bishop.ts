@@ -1,6 +1,6 @@
-import DiagonallyVerticallyHorizontallyMovingPiece from "models/pieces/DiagonallyVerticallyHorizontallyMovingPiece";
-import Cell from "models/Cell";
-import { Color } from "types";
+import DiagonallyVerticallyHorizontallyMovingPiece from "./DiagonallyVerticallyHorizontallyMovingPiece";
+import Cell from "../Cell";
+import { Color } from "../../types";
 
 class Bishop extends DiagonallyVerticallyHorizontallyMovingPiece {
   constructor(color: Color, cell: Cell) {

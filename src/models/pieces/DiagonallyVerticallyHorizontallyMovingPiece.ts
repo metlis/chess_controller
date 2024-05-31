@@ -1,5 +1,5 @@
-import Piece from "models/pieces/Piece";
-import Cell from "models/Cell";
+import Piece from "./Piece";
+import Cell from "../Cell";
 
 abstract class DiagonallyVerticallyHorizontallyMovingPiece extends Piece {
   private targetReachable(target: Cell): boolean {

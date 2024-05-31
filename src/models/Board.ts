@@ -1,9 +1,9 @@
-import Cell from "models/Cell";
-import Piece from "models/pieces/Piece";
-import Game from "models/Game";
-import PieceFactory from "models/PieceFactory";
-import EventBridge from "controllers/EventBridge";
-import Refreshable from "mixins/Refreshable";
+import Cell from "./Cell";
+import Piece from "./pieces/Piece";
+import Game from "./Game";
+import PieceFactory from "./PieceFactory";
+import EventBridge from "../controllers/EventBridge";
+import Refreshable from "../mixins/Refreshable";
 import type {
   Color,
   Coordinate,

@@ -1,4 +1,4 @@
-import Board from "models/Board";
+import Board from "./Board";
 
 class Base {
   public readonly board: Board;

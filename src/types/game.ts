@@ -1,7 +1,7 @@
-import { Piece } from "types/board";
-import Cell from "models/Cell";
-import Move from "models/Move";
-import PromotionPiece from "models/pieces/PromotionPiece";
+import { Piece } from "./board";
+import Cell from "../models/Cell";
+import Move from "../models/Move";
+import PromotionPiece from "../models/pieces/PromotionPiece";
 
 export const GameEventTypeLiterals = [
   "game:switchActivePlayerPiecesDraggability",

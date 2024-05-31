@@ -1,6 +1,6 @@
-import Base from "models/Base";
-import Cell from "models/Cell";
-import Refreshable from "mixins/Refreshable";
+import Base from "../Base";
+import Cell from "../Cell";
+import Refreshable from "../../mixins/Refreshable";
 import {
   Color,
   BoardEventPayload,

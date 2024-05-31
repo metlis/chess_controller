@@ -1,10 +1,10 @@
-import Board from "models/Board";
-import Game from "models/Game";
-import Move from "models/Move";
-import MovesHistory from "models/MovesHistory";
-import PendingPromotion from "models/PendingPromotion";
-import { Color, GameEventPayload, GameEventType, Piece } from "types";
-import EventBridge from "controllers/EventBridge";
+import Board from "../models/Board";
+import Game from "../models/Game";
+import Move from "../models/Move";
+import MovesHistory from "../models/MovesHistory";
+import PendingPromotion from "../models/PendingPromotion";
+import { Color, GameEventPayload, GameEventType, Piece } from "../types";
+import EventBridge from "./EventBridge";
 
 class GameController {
   private readonly game: Game;

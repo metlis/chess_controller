@@ -1,3 +1,3 @@
-export * from "types/board";
-export * from "types/game";
-export * from "types/refreshable";
+export * from "./board";
+export * from "./game";
+export * from "./refreshable";

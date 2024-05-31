@@ -7,11 +7,11 @@ import type {
   BoardEventType,
   BoardEventPayload,
   CellState,
-} from "types";
-import Base from "models/Base";
-import Board from "models/Board";
-import PromotionPiece from "models/pieces/PromotionPiece";
-import Refreshable from "mixins/Refreshable";
+} from "../types";
+import Base from "./Base";
+import Board from "./Board";
+import PromotionPiece from "./pieces/PromotionPiece";
+import Refreshable from "../mixins/Refreshable";
 import { COLUMN_LETTERS, ROW_NUMBERS } from "../constants";
 
 class Cell extends Refreshable(Base) {

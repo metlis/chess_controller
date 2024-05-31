@@ -1,4 +1,4 @@
-import { ComponentRefresh, RefreshableConstructor } from "types";
+import { ComponentRefresh, RefreshableConstructor } from "../types";
 
 function Refreshable<TBase extends RefreshableConstructor>(Base: TBase) {
   return class Refreshable extends Base {

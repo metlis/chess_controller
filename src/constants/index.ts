@@ -1,4 +1,4 @@
-import { PiecesCoordinates, Row, Column, ColumnLetter, RowNumber } from "types";
+import { PiecesCoordinates, Row, Column, ColumnLetter, RowNumber } from "../types";
 
 export const PIECES_COORDINATES: PiecesCoordinates = {
   b: [

@@ -1,6 +1,6 @@
-import Piece from "models/pieces/Piece";
-import Board from "models/Board";
-import Cell from "models/Cell";
+import Piece from "../models/pieces/Piece";
+import Board from "../models/Board";
+import Cell from "../models/Cell";
 import {
   BoardEventType,
   BoardEventPayload,
@@ -9,7 +9,7 @@ import {
   GameEventType,
   GameEventPayload,
   GameEventTypeLiterals,
-} from "types";
+} from "../types";
 
 type eventType = BoardEventType | GameEventType;
 type eventPayload = BoardEventPayload | GameEventPayload;

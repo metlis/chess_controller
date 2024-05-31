@@ -1,6 +1,6 @@
-import Piece from "models/pieces/Piece";
-import { Color } from "types";
-import Cell from "models/Cell";
+import Piece from "./Piece";
+import { Color } from "../../types";
+import Cell from "../Cell";
 
 class Pawn extends Piece {
   constructor(color: Color, cell: Cell) {
