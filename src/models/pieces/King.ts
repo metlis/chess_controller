@@ -14,7 +14,7 @@ class King extends Piece {
     return !target.piece || target.piece.color !== this.color;
   }
 
-  getMoveOptions(): Cell[] {
+  public getMoveOptions(): Cell[] {
     const cells: Cell[] = [];
 
     const top = this.board.getCell([

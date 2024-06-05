@@ -11,7 +11,7 @@ class Pawn extends Piece {
     return this.color !== this.board.colorOnTop;
   }
 
-  getMoveOptions(): Cell[] {
+  public getMoveOptions(): Cell[] {
     const cells: Cell[] = [];
 
     const left = this.board.getCell([

@@ -7,7 +7,7 @@ class Queen extends DiagonallyVerticallyHorizontallyMovingPiece {
     super(color, cell, "q");
   }
 
-  getMoveOptions(): Cell[] {
+  public getMoveOptions(): Cell[] {
     this.moveOptions = [
       ...this.getDiagonalMoveOptions(),
       ...this.getVerticalHorizontalMoveOptions(),

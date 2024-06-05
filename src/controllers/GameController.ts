@@ -152,7 +152,7 @@ class GameController {
     return resultsContainer.length > 0;
   }
 
-  private get isGameOver(): boolean {
+  public get isGameOver(): boolean {
     if (this.gameOver) return true;
     if (
       this.movesHistory.isThreefoldRepetition(
