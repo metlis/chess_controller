@@ -34,7 +34,13 @@ class Pawn extends Piece {
       this.cell.coordinate[0] + 2 * (this.movingUp ? -1 : 1),
       this.cell.coordinate[1],
     ]);
-    if (doubleStraight && !this.moved && !doubleStraight.piece) {
+    if (
+      !this.moved &&
+      doubleStraight &&
+      !doubleStraight.piece &&
+      singleStraight &&
+      !singleStraight.piece
+    ) {
       cells.push(doubleStraight);
     }
 

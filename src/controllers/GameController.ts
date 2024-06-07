@@ -75,7 +75,12 @@ class GameController {
   private onPieceMove(payload: GameEventPayload): void {
     if (payload.move instanceof Array) {
       const [piece, to] = payload.move;
-      if (piece.checkedMoveOptions.includes(to)) {
+      if (
+        piece &&
+        to &&
+        piece.checkedMoveOptions.includes(to) &&
+        piece.color === this.activePlayer
+      ) {
         if (piece.name === "p" && [0, 7].includes(to.coordinate[0])) {
           this.pendingPromotion = new PendingPromotion(piece, to);
           return;
@@ -83,7 +88,7 @@ class GameController {
         this.movesHistory.addMove(new Move(piece, to), true);
         this.switchActivePlayerPiecesDraggability();
         this.switchActivePlayer();
-      } else {
+      } else if (piece) {
         piece.recenter();
       }
     }
@@ -164,6 +169,7 @@ class GameController {
       this.gameOver = true;
     }
     if (!this.activePlayerHasMoveOptions) {
+      this.getPossibleMoves(this.idlePlayer);
       if (this.isCheck) {
         this.movesHistory.setWinner(this.idlePlayer);
       } else {
