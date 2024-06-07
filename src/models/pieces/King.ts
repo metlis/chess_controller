@@ -71,7 +71,7 @@ class King extends Piece {
     );
     if (
       !this.moved &&
-      !oppositePieces.some((p) => p.moveOptions.includes(this.cell))
+      !oppositePieces.some((p) => p.checkedMoveOptions.includes(this.cell))
     ) {
       const shortCastlingCoords: [number, number][] = [1, 2, 3].map((i) => [
         this.cell.coordinate[0],
@@ -95,7 +95,7 @@ class King extends Piece {
             if (cell) {
               if (cell.piece) return false;
               for (const p of oppositePieces) {
-                if (p.moveOptions.includes(cell)) return false;
+                if (p.checkedMoveOptions.includes(cell)) return false;
               }
               cells.push(cell);
             }
