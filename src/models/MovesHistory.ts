@@ -182,7 +182,7 @@ class MovesHistory extends Refreshable(Base) {
     return moves;
   }
 
-  public async copyMoves() {
+  public copyMoves(): string {
     let str = "";
     const moves = this.printableMoves;
     moves.forEach((move, index) => {
@@ -202,7 +202,7 @@ class MovesHistory extends Refreshable(Base) {
         str += "1/2 - 1/2";
       }
     }
-    await navigator.clipboard.writeText(str);
+    return str;
   }
 
   public setWinner(winner: Color | undefined | null) {

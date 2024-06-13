@@ -107,4 +107,19 @@ describe("MoveHistory", () => {
         game.controller.movesHistory.lastMove?.to.id === "F7"
     ).toBeTruthy();
   });
+
+  test("Copy moves string", () => {
+    const c = cellDict(board);
+    // e4
+    move(c.e2, c.e4);
+    // e5
+    move(c.e7, c.e5);
+    // Nf3
+    move(c.g1, c.f3);
+    // Nc6
+    move(c.b8, c.c6);
+    expect(game.controller.movesHistory.copyMoves()).toBe(
+      "1. e4 e5 2. Nf3 Nc6"
+    );
+  });
 });
