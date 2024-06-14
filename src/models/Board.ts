@@ -4,7 +4,7 @@ import Game from "./Game";
 import PieceFactory from "./PieceFactory";
 import EventBridge from "../controllers/EventBridge";
 import Refreshable from "../mixins/Refreshable";
-import type {
+import {
   Color,
   Coordinate,
   PieceName,
@@ -118,6 +118,14 @@ class Board extends Refreshable(_) {
       return null;
     }
     return this.cellGrid[coordinate[0]][coordinate[1]];
+  }
+
+  public getCellByID(cellID: string): Cell | null {
+    const cell = this.cells.find(
+      (c) => c.id === cellID.toLowerCase() || c.id === cellID.toUpperCase()
+    );
+    if (!cell) return null;
+    return cell;
   }
 
   public onRotate() {

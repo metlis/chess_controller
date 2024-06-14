@@ -71,4 +71,13 @@ describe("Board", () => {
       expect(cell?.piece?.color).toBe("b");
     }
   });
+
+  test("Get cell by ID", () => {
+    let cell = board.getCellByID('A4');
+    expect(cell?.id).toBe('A4');
+    cell = board.getCellByID('b8');
+    expect(cell?.id).toBe('B8');
+    cell = board.getCellByID('C10');
+    expect(cell).toBeNull();
+  })
 });
