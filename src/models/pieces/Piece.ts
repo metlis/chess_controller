@@ -5,7 +5,7 @@ import {
   Color,
   BoardEventPayload,
   BoardEventType,
-  PieceImage,
+  PieceCode,
   PieceName,
 } from "../../types";
 
@@ -13,7 +13,7 @@ abstract class Piece extends Refreshable(Base) {
   public cell: Cell;
   public readonly color: Color;
   public readonly name: PieceName;
-  public readonly image: PieceImage;
+  public readonly code: PieceCode;
   public moved: boolean = false;
   public moveOptions: Cell[] = [];
   public checkedMoveOptions: Cell[] = [];
@@ -25,7 +25,7 @@ abstract class Piece extends Refreshable(Base) {
     this.cell = cell;
     this.color = color;
     this.name = name;
-    this.image = `${name}_${color}.svg`;
+    this.code = `${name}_${color}`;
     cell.piece = this;
   }
 

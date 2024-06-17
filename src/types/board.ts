@@ -12,7 +12,7 @@ export type Column = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
 export type Coordinate = [Row, Column];
 export type Piece = Bishop | King | Knight | Pawn | Rook | Queen;
 export type PieceName = "b" | "k" | "n" | "p" | "r" | "q";
-export type PieceImage = `${PieceName}_${Color}.svg`;
+export type PieceCode = `${PieceName}_${Color}`;
 
 export const BoardEventTypeLiterals = [
   "cell:switchState",
