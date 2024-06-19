@@ -89,7 +89,7 @@ class GameController {
         this.switchActivePlayerPiecesDraggability();
         this.switchActivePlayer();
       } else if (piece) {
-        piece.recenter();
+        piece.hook("move:abort");
       }
     }
   }

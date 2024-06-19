@@ -65,7 +65,7 @@ abstract class Piece extends Base {
     };
   }
 
-  public onDragStart(): void {
+  public onMoveStart(): void {
     if (this.touched) return;
     this.eventBridge.addEvent(
       "piece:changeDraggability",
@@ -77,17 +77,17 @@ abstract class Piece extends Base {
     });
   }
 
-  public onDragStop(offset: { x: number; y: number }): void {
+  public onMoveStop(offset: { x: number; y: number }): void {
     const to = this.board.getCell([
       this.cell.coordinate[0] + offset.y,
       this.cell.coordinate[1] + offset.x,
     ]);
     if (!to) {
-      this.recenter();
+      this.hook("move:abort");
       return;
     }
     if (this.isTouchedAndNotMovedCorrectly(to)) {
-      this.recenter();
+      this.hook("move:abort");
       this.touched = true;
       this.eventBridge.addEvent("game:pieceTouched", { piece: this });
       return;
@@ -113,15 +113,6 @@ abstract class Piece extends Base {
       }
     }
     return false;
-  }
-
-  public recenter(): void {
-    this.draggable = false;
-    this.hook("piece:update");
-    setTimeout(() => {
-      this.draggable = true;
-      this.hook("piece:update");
-    }, 0);
   }
 
   protected checkMoveOptions() {
