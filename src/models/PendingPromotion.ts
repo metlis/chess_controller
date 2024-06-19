@@ -2,11 +2,10 @@ import Base from "./Base";
 import Piece from "./pieces/Piece";
 import Cell from "./Cell";
 import PieceFactory from "./PieceFactory";
-import Refreshable from "../mixins/Refreshable";
 import Move from "./Move";
 import { GameEventPayload, Row } from "../types";
 
-class PendingPromotion extends Refreshable(Base) {
+class PendingPromotion extends Base {
   private readonly piece: Piece;
   private readonly prevToPiece: Piece | null;
   private readonly from: Cell;
@@ -34,7 +33,7 @@ class PendingPromotion extends Refreshable(Base) {
     });
     this.promotionCells = promotionCells;
     this.from.piece = null;
-    this.from.refreshComponent();
+    this.from.hook("cell:update");
     this.showOptions();
   }
 
@@ -72,7 +71,7 @@ class PendingPromotion extends Refreshable(Base) {
     this.piece.cell = this.from;
     this.to.piece = this.prevToPiece;
     this.undone = true;
-    this.from.refreshComponent();
+    this.from.hook("cell:update");
     this.eventBridge.addEvent("cell:switchState", {
       include: this.promotionCells,
       cellState: "default",

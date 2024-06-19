@@ -3,7 +3,6 @@ import Piece from "./pieces/Piece";
 import Game from "./Game";
 import PieceFactory from "./PieceFactory";
 import EventBridge from "../controllers/EventBridge";
-import Refreshable from "../mixins/Refreshable";
 import {
   Color,
   Coordinate,
@@ -15,21 +14,20 @@ import {
 } from "../types";
 import { PIECES_COORDINATES, COLUMN_LETTERS, AXIS_VALUES } from "../constants";
 
-class _ {}
-class Board extends Refreshable(_) {
+class Board {
   public game: Game;
   public readonly cellGrid: Cell[][] = [];
   private readonly piecesCoordinates: PiecesCoordinates = PIECES_COORDINATES;
   public readonly columnLetters: ColumnLetter[] = COLUMN_LETTERS;
   public eventBridge: EventBridge;
   public colorOnTop: Color;
+  public hook: Function = (...args: any[]): any => {};
 
   public constructor(
     game: Game,
     eventBridge: EventBridge,
     colorOnTop: Color = "b"
   ) {
-    super();
     this.game = game;
     this.eventBridge = eventBridge.init(this);
     this.colorOnTop = colorOnTop;
@@ -41,7 +39,7 @@ class Board extends Refreshable(_) {
     if (this.colorOnTop === "w") {
       this.rotateBoard();
     }
-    this.refreshComponent();
+    this.hook("board:init");
   }
 
   public get cells() {
@@ -95,7 +93,7 @@ class Board extends Refreshable(_) {
     return this.cellGrid;
   }
 
-  public rotateBoard(): Cell[][] {
+  private rotateBoard(): Cell[][] {
     const rows: Row[] = AXIS_VALUES;
     const columns: Column[] = AXIS_VALUES;
     this.cellGrid.reverse();
@@ -131,7 +129,7 @@ class Board extends Refreshable(_) {
   public onRotate() {
     this.colorOnTop = this.colorOnTop === "b" ? "w" : "b";
     this.rotateBoard();
-    this.refreshComponent();
+    this.hook("board:rotate");
   }
 }
 

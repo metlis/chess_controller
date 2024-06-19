@@ -2,12 +2,11 @@ import Move from "./Move";
 import Piece from "./pieces/Piece";
 import King from "./pieces/King";
 import Base from "./Base";
-import Refreshable from "../mixins/Refreshable";
 import { Color } from "../types";
 
 type snapshots = { [color in Color]: string[] };
 
-class MovesHistory extends Refreshable(Base) {
+class MovesHistory extends Base {
   private stack: Move[] = [];
   private snapshots: snapshots = { b: [], w: [] };
   private pointer: number = -1;
@@ -30,7 +29,7 @@ class MovesHistory extends Refreshable(Base) {
     this.stack.push(move);
     this.pointer++;
     if (showMove) {
-      this.refreshComponent();
+      this.hook("history:update");
       this.switchLastMoveVisibility();
     }
   }
@@ -228,7 +227,7 @@ class MovesHistory extends Refreshable(Base) {
     this.pointer--;
     this.switchLastMoveVisibility();
     this.switchCheckVisibility(true);
-    this.refreshComponent();
+    this.hook("history:update");
   }
 
   public goToStart() {
@@ -240,7 +239,7 @@ class MovesHistory extends Refreshable(Base) {
       this.pointer--;
     }
     this.switchCellsToDefault();
-    this.refreshComponent();
+    this.hook("history:update");
   }
 
   public goForward() {
@@ -254,7 +253,7 @@ class MovesHistory extends Refreshable(Base) {
       this.eventBridge.addEvent("game:switchActivePlayerPiecesDraggability");
     }
     this.switchPendingPromotion();
-    this.refreshComponent();
+    this.hook("history:update");
   }
 
   public goToEnd() {
@@ -268,7 +267,7 @@ class MovesHistory extends Refreshable(Base) {
     this.switchCheckVisibility(true);
     this.eventBridge.addEvent("game:switchActivePlayerPiecesDraggability");
     this.switchPendingPromotion();
-    this.refreshComponent();
+    this.hook("history:update");
   }
 }
 

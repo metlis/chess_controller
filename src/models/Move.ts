@@ -46,8 +46,8 @@ class Move extends Base {
     this.piece.cell = this.to;
     this.from.piece = null;
     this.piece.moved = true;
-    this.to.refreshComponent();
-    this.from.refreshComponent();
+    this.to.hook("cell:update");
+    this.from.hook("cell:update");
   }
 
   private checkEnPassant(piece: Piece, to: Cell) {
@@ -64,7 +64,7 @@ class Move extends Base {
         this.enPassantPiece = cell.piece;
         this.enPassantCell = cell;
         cell.piece = null;
-        cell.refreshComponent();
+        cell.hook("cell:update");
       }
     }
   }
@@ -87,8 +87,8 @@ class Move extends Base {
           rook.cell = newRookCell;
           newRookCell.piece = rook;
           this.prevCastlingRookCell.piece = null;
-          rook.cell.refreshComponent();
-          this.prevCastlingRookCell.refreshComponent();
+          rook.cell.hook("cell:update");
+          this.prevCastlingRookCell.hook("cell:update");
         }
       }
     };
@@ -127,10 +127,10 @@ class Move extends Base {
     }
   }
 
-  public undoMove(refreshComponents = false) {
+  public undoMove(isVisible = false) {
     if (this.promotion) {
       this.promotion.from.piece = this.promotion.piece;
-      if (refreshComponents) this.promotion.from.refreshComponent();
+      if (isVisible) this.promotion.from.hook("cell:update");
     } else {
       this.piece.cell = this.from;
       this.from.piece = this.piece;
@@ -138,21 +138,21 @@ class Move extends Base {
     this.to.piece = this.prevToPiece;
     this.piece.moved = this.prevMoved;
 
-    if (refreshComponents) {
-      this.from.refreshComponent();
-      this.to.refreshComponent();
+    if (isVisible) {
+      this.from.hook("cell:update");
+      this.to.hook("cell:update");
     }
 
     if (this.enPassantCell && this.enPassantPiece) {
       this.enPassantCell.piece = this.enPassantPiece;
-      if (refreshComponents) this.enPassantCell.refreshComponent();
+      if (isVisible) this.enPassantCell.hook("cell:update");
     }
 
     if (this.castledRook && this.prevCastlingRookCell) {
       this.castledRook.cell.piece = null;
-      if (refreshComponents) this.castledRook.cell.refreshComponent();
+      if (isVisible) this.castledRook.cell.hook("cell:update");
       this.castledRook.cell = this.prevCastlingRookCell;
-      if (refreshComponents) this.castledRook.cell.refreshComponent();
+      if (isVisible) this.castledRook.cell.hook("cell:update");
       this.castledRook.cell.piece = this.castledRook;
     }
   }

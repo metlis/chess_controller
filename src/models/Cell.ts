@@ -11,10 +11,9 @@ import type {
 import Base from "./Base";
 import Board from "./Board";
 import PromotionPiece from "./pieces/PromotionPiece";
-import Refreshable from "../mixins/Refreshable";
 import { COLUMN_LETTERS, ROW_NUMBERS } from "../constants";
 
-class Cell extends Refreshable(Base) {
+class Cell extends Base {
   public id: CellID;
   public readonly color: Color;
   public coordinate: Coordinate;
@@ -62,7 +61,6 @@ class Cell extends Refreshable(Base) {
           ? "b"
           : "w";
       this.promotionPiece = new PromotionPiece(pieceColor, pieceName, this);
-      this.refreshComponent();
     }
   }
 
@@ -85,7 +83,7 @@ class Cell extends Refreshable(Base) {
         this.hidePromotionOptions();
       }
       this.state = payload.cellState;
-      this.refreshComponent();
+      this.hook("cell:update");
     }
   }
 }

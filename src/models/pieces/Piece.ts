@@ -1,6 +1,5 @@
 import Base from "../Base";
 import Cell from "../Cell";
-import Refreshable from "../../mixins/Refreshable";
 import {
   Color,
   BoardEventPayload,
@@ -9,7 +8,7 @@ import {
   PieceName,
 } from "../../types";
 
-abstract class Piece extends Refreshable(Base) {
+abstract class Piece extends Base {
   public cell: Cell;
   public readonly color: Color;
   public readonly name: PieceName;
@@ -34,7 +33,7 @@ abstract class Piece extends Refreshable(Base) {
   public on(event: BoardEventType, payload: BoardEventPayload = {}): void {
     switch (event) {
       case "piece:changeDraggability":
-        this.changeDraggability(this.refreshComponent.bind(this));
+        this.changeDraggability(this.hook.bind(this));
         break;
       case "piece:getMoveOptions":
         this.getMoveOptions();
@@ -54,7 +53,7 @@ abstract class Piece extends Refreshable(Base) {
   private changeDraggability(callback: Function = () => null): void {
     this.draggable = !this.draggable;
     this.touched = false;
-    callback();
+    callback("piece:update");
   }
 
   public get draggabilityPayload(): BoardEventPayload {
@@ -118,10 +117,10 @@ abstract class Piece extends Refreshable(Base) {
 
   public recenter(): void {
     this.draggable = false;
-    this.refreshComponent();
+    this.hook("piece:update");
     setTimeout(() => {
       this.draggable = true;
-      this.refreshComponent();
+      this.hook("piece:update");
     }, 0);
   }
 

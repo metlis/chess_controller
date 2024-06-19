@@ -2,6 +2,7 @@ import Board from "./Board";
 
 class Base {
   public readonly board: Board;
+  public hook: Function = (...args: any[]): any => {};
 
   constructor(board: Board) {
     this.board = board;
