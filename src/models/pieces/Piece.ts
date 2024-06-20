@@ -6,6 +6,7 @@ import {
   BoardEventType,
   PieceCode,
   PieceName,
+  CellID,
 } from "../../types";
 
 abstract class Piece extends Base {
@@ -18,10 +19,12 @@ abstract class Piece extends Base {
   public checkedMoveOptions: Cell[] = [];
   public draggable: boolean = false;
   private touched: boolean = false;
+  public initCellID: CellID;
 
   protected constructor(color: Color, cell: Cell, name: PieceName) {
     super(cell.board);
     this.cell = cell;
+    this.initCellID = this.cell.id;
     this.color = color;
     this.name = name;
     this.code = `${name}_${color}`;
@@ -67,6 +70,7 @@ abstract class Piece extends Base {
 
   public onMoveStart(): void {
     if (this.touched) return;
+    if (this.color === this.gameController.idlePlayer) return;
     this.eventBridge.addEvent(
       "piece:changeDraggability",
       this.draggabilityPayload
