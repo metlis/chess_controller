@@ -135,7 +135,7 @@ class GameController {
     });
   }
 
-  private get isCheck(): boolean {
+  public get isCheck(): boolean {
     const resultsContainer: Piece[] = [];
     this.eventBridge.addEvent("piece:detectCheck", {
       include: this.board.pieces.filter(

@@ -83,7 +83,10 @@ class King extends Piece {
       ]);
       const checkCastlingForCurrentMove = (coords: [number, number][]) => {
         const rookCell = this.board.getCell(coords[coords.length - 1]);
-        if (rookCell?.piece && !rookCell.piece.moved) {
+        if (this.board.game.controller.isCheck) {
+          this.shortCastlingPossible = false;
+          this.longCastlingPossible = false;
+        } else if (rookCell?.piece && !rookCell.piece.moved) {
           if (coords.length === 3) {
             this.shortCastlingPossible = true;
           } else {
